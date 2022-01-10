@@ -1,0 +1,74 @@
+{% extends 'propuestas/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
+{% endblock %}
+
+<div class="container-fluid">
+  <h3>Listado de Clientes</h3>
+  <br>
+
+  <button type="button" class="btn btn-success" a href="nuevo-cliente">Nuevo Cliente</button>
+  <br><br>
+  <table class="table table-borderless table-hover" id="data">
+    <thead class="table-light">
+      <tr>
+        <th scope="col" style="width:10%;">RUT</th>
+        <th scope="col" style="width:30%;">Cliente</th>
+        <th scope="col" style="width:20%;">Email</th>
+        <th scope="col" style="width:20%;">Celular</th>
+        <th scope="col" style="width:10%;">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for c in object_list %}
+        <td>{{ c.rut }}</td>
+        <td>
+
+          {% if c.pers_nat == False %}
+          {{ c.nombres }} {{ c.ape_pat }} {{ c.ape_mat }}
+          {% else %}
+          {{ c.razon_social }}
+          {% endif %}
+
+        </td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.celular }}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-warning btn-sm">Editar</button>
+
+            <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-sm"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Más
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <li><a class="dropdown-item" href="#">Crear Propuesta</a></li>
+                <li><a class="dropdown-item" href="#">Eliminar</a></li>
+              </ul>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
+
+
+
+
+
+

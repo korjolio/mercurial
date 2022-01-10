@@ -1,0 +1,32 @@
+{% extends 'propuestas/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="container">
+    <div class="col-8">
+    <div class="card">
+        <div class="card-body">
+            <h3>Nuevo Cliente</h3>
+            <hr>
+            <form action="" method="post">
+
+                {% csrf_token %}
+                {{ form | crispy }}
+
+                <div class="d-flex justify-content-center">
+                    <input type="reset" value="Cancelar" class="btn btn-secondary">
+                    &nbsp;
+                    <input type="submit" value="Guardar" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+{% endblock %}
